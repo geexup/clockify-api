@@ -1,0 +1,27 @@
+{
+  "name": "clockify-api",
+  "version": "1.0.0",
+  "description": "Clockify API",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "examples"
+  ],
+  "repository": "https://github.com/geexup/clockify-api.git",
+  "author": "Lex Yudin (@geexup)",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "@types/moment": "2.13.0",
+    "@types/node": "12.0.7",
+    "@types/request": "2.48.1",
+    "typescript": "3.5.1"
+  },
+  "dependencies": {
+    "moment": "2.24.0",
+    "request": "2.88.0"
+  }
+}
