@@ -11,7 +11,7 @@ import { makeFunctionalSubroute } from './subroute';
 export type APIRequestMethod = 'GET' | 'POST' | 'DELETE' | 'PUT' | 'PATCH';
 
 // Clockify time in MomentJS format string
-const CLOCKIFY_DATE_FORMAT = 'YYYY-MM-DDTHH-mm-ss.SSS[Z]';
+const CLOCKIFY_DATE_FORMAT = 'YYYY-MM-DDTHH:mm:ss.SSS[Z]';
 
 const PRODUCER_MAP = {
   'GET': get,

@@ -12,7 +12,7 @@ const forbidden_error_1 = require("./errors/forbidden.error");
 const not_found_error_1 = require("./errors/not-found.error");
 const subroute_1 = require("./subroute");
 // Clockify time in MomentJS format string
-const CLOCKIFY_DATE_FORMAT = 'YYYY-MM-DDTHH-mm-ss.SSS[Z]';
+const CLOCKIFY_DATE_FORMAT = 'YYYY-MM-DDTHH:mm:ss.SSS[Z]';
 const PRODUCER_MAP = {
     'GET': request_1.get,
     'POST': request_1.post,
