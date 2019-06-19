@@ -1,6 +1,6 @@
 {
   "name": "clockify-api",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Clockify API",
   "main": "dist/index.js",
   "files": [

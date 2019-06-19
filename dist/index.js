@@ -11,6 +11,7 @@ const unauthorized_error_1 = require("./errors/unauthorized.error");
 const forbidden_error_1 = require("./errors/forbidden.error");
 const not_found_error_1 = require("./errors/not-found.error");
 const subroute_1 = require("./subroute");
+const web_api_1 = require("./web-api");
 // Clockify time in MomentJS format string
 const CLOCKIFY_DATE_FORMAT = 'YYYY-MM-DDTHH:mm:ss.SSS[Z]';
 const PRODUCER_MAP = {
@@ -25,8 +26,10 @@ class ClockifyApi {
         this.apiKey = apiKey;
         this.debugMode = process.env['CLOCKIFY_DEBUG'] === 'true';
         this.basePoint = 'https://api.clockify.me/api/v1';
-        this.user = new api_1.UserRoute('user', this);
-        this.workspaces = subroute_1.makeFunctionalSubroute(new api_1.WorkspacesRoute('workspaces', this));
+        this.basePointWebApi = 'https://global.api.clockify.me';
+        this.webApi = new web_api_1.WebApi(`${this.basePointWebApi}`, this);
+        this.user = new api_1.UserRoute(`${this.basePoint}/user`, this);
+        this.workspaces = subroute_1.makeFunctionalSubroute(new api_1.WorkspacesRoute(`${this.basePoint}/workspaces`, this));
     }
     parseParams(params) {
         const parts = [];
@@ -63,7 +66,7 @@ class ClockifyApi {
     }
     makeApiRequest(uri, method, params = {}) {
         return new Promise((resolve, reject) => {
-            let url = `${this.basePoint}/${this.prepareUri(uri)}`;
+            let url = `${this.prepareUri(uri)}`;
             const requestProducer = PRODUCER_MAP[method];
             const requestParams = {
                 headers: {

@@ -19,7 +19,7 @@ export interface CKLWorkspacesPostRequest {
   name: string;
 }
 
-export class WorkspacesRoute extends ApiSubroute implements ApiFunctionalProtocol{
+export class WorkspacesRoute extends ApiSubroute implements ApiFunctionalProtocol {
   /** Get sub routes (if call instance as a function) */
   __call__(workspaceId: CKLId) {
     const self = this;

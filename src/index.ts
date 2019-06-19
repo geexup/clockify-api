@@ -7,6 +7,7 @@ import { CKLUnauthorizedError } from './errors/unauthorized.error';
 import { CKLForbiddenError } from './errors/forbidden.error';
 import { CKLNotFoundError } from './errors/not-found.error';
 import { makeFunctionalSubroute } from './subroute';
+import { WebApi } from './web-api';
 
 export type APIRequestMethod = 'GET' | 'POST' | 'DELETE' | 'PUT' | 'PATCH';
 
@@ -24,9 +25,12 @@ const PRODUCER_MAP = {
 export class ClockifyApi {
   private debugMode = process.env['CLOCKIFY_DEBUG'] === 'true';
   private basePoint = 'https://api.clockify.me/api/v1';
+  private basePointWebApi = 'https://global.api.clockify.me';
 
-  user = new UserRoute('user', this);
-  workspaces = makeFunctionalSubroute(new WorkspacesRoute('workspaces', this));
+  webApi = new WebApi(`${this.basePointWebApi}`, this);
+
+  user = new UserRoute(`${this.basePoint}/user`, this);
+  workspaces = makeFunctionalSubroute(new WorkspacesRoute(`${this.basePoint}/workspaces`, this));
 
   constructor(
     private apiKey: string
@@ -74,7 +78,7 @@ export class ClockifyApi {
 
   makeApiRequest(uri: string, method: APIRequestMethod, params: any = {}): Promise<any> {
     return new Promise((resolve, reject) => {
-      let url = `${this.basePoint}/${this.prepareUri(uri)}`;
+      let url = `${this.prepareUri(uri)}`;
       const requestProducer = PRODUCER_MAP[method];
       const requestParams: CoreOptions = {
         headers: {

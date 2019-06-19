@@ -1,9 +1,12 @@
 import { UserRoute, WorkspacesRoute } from './api';
+import { WebApi } from './web-api';
 export declare type APIRequestMethod = 'GET' | 'POST' | 'DELETE' | 'PUT' | 'PATCH';
 export declare class ClockifyApi {
     private apiKey;
     private debugMode;
     private basePoint;
+    private basePointWebApi;
+    webApi: WebApi;
     user: UserRoute;
     workspaces: ((workspaceId: string) => {
         clients: import("./api/workspaces/clients").ClientsRoute;
